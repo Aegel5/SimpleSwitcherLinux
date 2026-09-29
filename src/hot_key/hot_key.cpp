@@ -11,8 +11,8 @@ void HotKey::FromString(string_view s) {
     clear();
     if (s.empty())
         return;
-    auto sElems = StrUtils::Split(s, '+');
-    for (auto& sCur : sElems) {
+    for (auto sCur_ : StrUtils::Split(s, '+')) {
+        string sCur {sCur_};
         StrUtils::ToLowerEnglishQuick(sCur);
         if (StrUtils::replaceAll(sCur, "#up", "")) {
             SetUp(true);

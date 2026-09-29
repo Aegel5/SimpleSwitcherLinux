@@ -1,18 +1,29 @@
 ﻿#pragma once
 
 namespace StrUtils {
-inline auto Split(string_view str, char delim, bool skipEmpty = true) {
-    std::vector<std::string> res;
-    std::ispanstream data(str);
-
-    std::string line;
-    while (std::getline(data, line, delim)) {
-        if (skipEmpty && line.empty())
-            continue;
-        res.push_back(line);
+inline std::generator<std::string_view> Split(string_view str, char delim, bool skipEmpty = true) {
+    size_t start = 0;
+    
+    while (start < str.size()) {
+        size_t end = str.find(delim, start);
+        if (end == std::string_view::npos) {
+            end = str.size();
+        }
+        
+        std::string_view token = str.substr(start, end - start);
+        
+        if (!skipEmpty || !token.empty()) {
+            co_yield token;
+        }
+        
+        start = end + 1;
     }
-
-    return res;
+    
+    // Крайний случай: если строка заканчивается на делитель, 
+    // и нам НУЖНО возвращать пустые элементы
+    if (!skipEmpty && !str.empty() && str.back() == delim) {
+        co_yield "";
+    }
 }
 
 inline char ToLowerEnglishQuick(char c) {  return (c >= 'A' && c <= 'Z') ? c+32 : c;}

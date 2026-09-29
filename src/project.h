@@ -10,14 +10,13 @@
 #include <ranges>
 #include <string>
 #include <vector>
+#include <thread>
+#include <iostream>
 
 using namespace std::chrono_literals;
 
 // linux
 #include "linux/input-event-codes.h"
-
-
-
 
 
 // our
@@ -43,6 +42,7 @@ using std::string;
 using std::string_view;
 using std::unique_ptr;
 using std::vector;
+
 #include "str_utils.h"
 bool is_in(auto&& first, auto&&... t) {
     return ((first == t) || ...);
@@ -54,7 +54,7 @@ enum class RevertType { last_word, several_words, all };
 
 template<typename... Args>
 inline void log_always(const std::format_string<Args...> s, Args&&... v) { 
-    std::println(s, std::forward<Args>(v)...); 
+    std::println(std::cout, s, std::forward<Args>(v)...); 
 }
 
 template<typename... Args>
@@ -66,7 +66,7 @@ inline void log_debug(const std::format_string<Args...> s, Args&&... v) {
 
 template<typename... Args>
 inline void log_error(const std::format_string<Args...> s, Args&&... v) { 
-    std::println(stderr, s, std::forward<Args>(v)...);
+    std::println(std::cerr, s, std::forward<Args>(v)...);
 }
 
 using ScanCode = uint32_t;
