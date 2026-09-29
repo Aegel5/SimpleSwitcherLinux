@@ -42,3 +42,16 @@ The configuration file contains the following parameters:
 | `mouse_device` | String | The mouse device path to read from. Leave it as an empty string `""` for auto-detection. |
 | `keyboard_exclusive_mode` | Boolean | **(Not recommended)** When enabled, all keyboard input is fully intercepted and proxied into a new virtual keyboard. This mode is strictly required if you need to filter input and remove hotkey press events (like `CapsLock`) from the OS queue. If you use neutral hotkeys (like `Break`) or manage to disable hotkeys at the Desktop Manager (DM) level, keep this mode disabled. |
 
+## 🚌 Shell D-Bus Settings
+
+> [!NOTE]
+> Currently, **only KDE is supported natively** via D-Bus. For any other Desktop Manager (DM), you must provide the `fallback_*` values.
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `user_id` | Integer | The ID of the current user (run `id -u` to find it). It is used to locate the D-Bus socket. Default is `1000`. |
+| `fallback_layouts_list` | Array | A list of keyboard layouts to switch between, for example: `["us", "ru"]`. This list is ignored if layout data is successfully retrieved via D-Bus. |
+| `fallback_emulate_switch` | String | The hotkey combo sent to the system if the layout cannot be switched via D-Bus, for example: `"Alt+Shift"`. |
+
+
+
