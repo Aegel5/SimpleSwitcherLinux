@@ -32,3 +32,13 @@ To generate a new configuration file or update an existing one, run:
 ```bash
 ./release/SimpleSwitcher -cfg
 ```
+## 🛠️ System Settings
+
+The configuration file contains the following parameters:
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `keyboard_device` | String | The keyboard device path to read from (e.g., `"/dev/input/by-id/my_keyboard"`). Leave it as an empty string `""` for auto-detection. *Note: Multimedia keyboards might not be detected automatically and must be specified manually.* |
+| `mouse_device` | String | The mouse device path to read from. Leave it as an empty string `""` for auto-detection. |
+| `keyboard_exclusive_mode` | Boolean | **(Not recommended)** When enabled, all keyboard input is fully intercepted and proxied into a new virtual keyboard. This mode is strictly required if you need to filter input and remove hotkey press events (like `CapsLock`) from the OS queue. If you use neutral hotkeys (like `Break`) or manage to disable hotkeys at the Desktop Manager (DM) level, keep this mode disabled. |
+
