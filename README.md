@@ -53,5 +53,15 @@ The configuration file contains the following parameters:
 | `fallback_layouts_list` | Array | A list of keyboard layouts to switch between, for example: `["us", "ru"]`. This list is ignored if layout data is successfully retrieved via D-Bus. |
 | `fallback_emulate_switch` | String | The hotkey combo sent to the system if the layout cannot be switched via D-Bus, for example: `"Alt+Shift"`. |
 
+## 🔄 Switching Settings
+
+> [!TIP]
+> For detailed implementation details and advanced options, please refer directly to the [`setting.h`](setting.h) source file.
+
+* `hk_last_word` (String/Key): Hotkey to convert the **last typed word**.
+* `hk_several_words` (String/Key): Hotkey to convert the **last few words**.
+* `hk_all_text` (String/Key): Hotkey to convert the **entire text buffer**.
+* `words_separate_mode` (Integer/Enum): Defines the mode for **word separation** (e.g., how spaces, punctuation, or special characters split words).
+* `treat_as_letter` (String/Array): A set of additional symbols or characters that should be **treated as letters** rather than word separators.
 
 
