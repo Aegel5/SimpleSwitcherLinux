@@ -64,4 +64,18 @@ The configuration file contains the following parameters:
 * `words_separate_mode` (Integer/Enum): Defines the mode for **word separation** (e.g., how spaces, punctuation, or special characters split words).
 * `treat_as_letter` (String/Array): A set of additional symbols or characters that should be **treated as letters** rather than word separators.
 
+## 🎮 Running and Management
+
+### Systemd Service
+* `./recreate_and_start.sh`: Creates and **starts the systemd service**. You must run this after every rebuild, as the service binds to the file's `sha256` hash.
+* `sudo systemctl restart SimpleSwitcher`: **Restarts the service** (useful after modifying configuration files).
+* `sudo journalctl -u SimpleSwitcher -f`: Follows and **views logs in real-time**.
+* `./delete_service`: **Stops and removes** the systemd service from the system.
+
+### IPC Control
+SimpleSwitcher creates a message queue at `/SimpleSwitcher_queue` to listen for external commands. 
+
+Supported commands:
+* `'c'` (1 byte): **Clears the internal text buffer**.
+
 
