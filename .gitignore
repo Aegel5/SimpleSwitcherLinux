@@ -1,0 +1,7 @@
+.vs
+*.kate-swp
+
+build
+release
+settings_user.h
+SimpleSwitcher.json
