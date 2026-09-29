@@ -44,11 +44,14 @@ std::generator<wchar_t> ResolveForAllLayout(ScanCode code, bool is_shift) {
     xkb_level_index_t level = is_shift ? 1 : 0;
     for (const auto& it : stores) {
         const xkb_keysym_t* syms;
-        if (!it.map)
+        if (!it.map){
             co_yield 0;
+            continue;
+        }
         int num_syms = xkb_keymap_key_get_syms_by_level(it.map.get(), code, 0, level, &syms);
         if (num_syms <= 0 || !syms) {
             co_yield 0;
+            continue;
         }
         auto res = xkb_keysym_to_utf32(*syms);
         co_yield res;
