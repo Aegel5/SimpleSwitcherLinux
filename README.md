@@ -2,7 +2,7 @@
 
 **SimpleSwitcher Linux** is a lightweight utility designed to quickly correct the keyboard layout of already typed text on Linux systems.
 
-This is the **Linux version** of SimpleSwitcher. If you are looking for the **Windows version**, you can find it [here](LINK_TO_WINDOWS_REPO).
+This is the **Linux version** of SimpleSwitcher. If you are looking for the **Windows version**, you can find it [here](https://github.com/Aegel5/SimpleSwitcher).
 
 ## ⚠️ Important Notice
 
